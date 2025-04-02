@@ -1,13 +1,15 @@
 import { useActionState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { z } from "zod";
-import { ThemeToggler } from "../components";
+import { HowToButton, ThemeToggler } from "../components";
 import { useAuthStore } from "../stores";
 
-const LoginSchema = z.object({
-  email: z.string().email("Invalid email format"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-});
+const LoginSchema = z
+  .object({
+    email: z.string().email("Invalid email format"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+  })
+  .required();
 
 type LoginFormValues = z.infer<typeof LoginSchema>;
 
@@ -48,28 +50,44 @@ export const Login = () => {
 
   return (
     <div className="flex justify-center items-center h-screen dark:bg-gray-900 dark:text-white dark:border-gray-700">
-      <form action={formAction} className="flex flex-col gap-3 w-80">
-        <div className="relative mb-2">
-          <h1 className="text-3xl flex items-center gap-4 text-center flex-1">
+      <form action={formAction} className="flex flex-col gap-3 w-100">
+        <div className="flex justify-between items-center gap-4 mb-2">
+          <HowToButton>
+            <div>
+              <h2 className="text-2xl font-bold mb-4">What's this about ?</h2>
+              <p className="text-lg">
+                This is my personal project to learn and teach how to react.
+              </p>
+              <p className="text-lg">
+                Use different techniques and tools to improve your skills.
+              </p>
+              <p className="mt-2">
+                Login: test@htr.com <br /> Password: howtoreact
+              </p>
+            </div>
+          </HowToButton>
+          <h1 className="text-3xl flex items-center justify-center gap-4 text-center flex-1">
             <span>How To React</span>
-            <img src="logo.svg" style={{ maxHeight: "30px" }} alt="" />
+            <img
+              src="logo.svg"
+              style={{ maxHeight: "30px" }}
+              className="animate-spin-slow"
+              alt=""
+            />
           </h1>
-          <div className="absolute top-[50%] translate-y-[-50%] right-0">
-            <ThemeToggler />
-          </div>
+
+          <ThemeToggler />
         </div>
         <input
           name="email"
           type="text"
           placeholder="test@htr.com"
-          required
-          className="border p-2 rounded"
+          className="border p-2 rounded appearance-none autofill:bg-yellow-200"
         />
         <input
           name="password"
           type="password"
           placeholder="howtoreact"
-          required
           className="border p-2 rounded"
         />
         <button
