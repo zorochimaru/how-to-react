@@ -1,8 +1,8 @@
-import axios from "axios";
-import { useCallback, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router";
-import { Footer, Header } from "../components";
-import { useAuthStore } from "../stores";
+import axios from 'axios';
+import { useCallback, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
+import { Footer, Header } from '../components';
+import { useAuthStore } from '../stores';
 
 interface TokenResponse {
   accessToken: string;
@@ -10,9 +10,7 @@ interface TokenResponse {
 }
 
 const AuthLayout = () => {
-  const { accessToken, refreshToken, setTokens, clearTokens } = useAuthStore(
-    (state) => state
-  );
+  const { accessToken, refreshToken, setTokens, clearTokens } = useAuthStore((state) => state);
 
   const navigate = useNavigate();
 
@@ -21,12 +19,12 @@ const AuthLayout = () => {
       return;
     }
     try {
-      const response = await axios.post<TokenResponse>("/auth/refresh", {
+      const response = await axios.post<TokenResponse>('/auth/refresh', {
         refreshToken,
       });
       setTokens(response.data.accessToken, response.data.refreshToken);
     } catch (error) {
-      console.error("Failed to refresh token", error);
+      console.error('Failed to refresh token', error);
       clearTokens();
     }
   }, [refreshToken, setTokens, clearTokens]);
@@ -39,7 +37,7 @@ const AuthLayout = () => {
     }
 
     if (!accessToken && !refreshToken) {
-      navigate("/login");
+      navigate('/login');
     }
   }, [accessToken, refreshToken, fetchTokens, navigate]);
 
@@ -47,7 +45,7 @@ const AuthLayout = () => {
     <div className="flex flex-col h-svh">
       <Header />
 
-      <main className="flex-1 dark:bg-gray-700 dark:text-white">
+      <main className="flex-1 dark:bg-gray-700 dark:text-white overflow-auto">
         <Outlet />
       </main>
 

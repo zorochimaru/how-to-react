@@ -1,13 +1,13 @@
-import { useActionState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import { z } from "zod";
-import { HowToButton, ThemeToggler } from "../components";
-import { useAuthStore } from "../stores";
+import { useActionState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { z } from 'zod';
+import { HowToButton, ThemeToggler } from '../components';
+import { useAuthStore } from '../stores';
 
 const LoginSchema = z
   .object({
-    email: z.string().email("Invalid email format"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
+    email: z.string().email('Invalid email format'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
   })
   .required();
 
@@ -23,20 +23,20 @@ async function loginAction(_prevState: { error?: string }, formData: FormData) {
 
   await new Promise((res) => setTimeout(res, 1000));
 
-  if (data.email !== "test@htr.com" || data.password !== "howtoreact") {
-    return { error: "Invalid email or password" };
+  if (data.email !== 'test@htr.com' || data.password !== 'howtoreact') {
+    return { error: 'Invalid email or password' };
   }
 
-  localStorage.setItem("accessToken", "token");
-  localStorage.setItem("refreshToken", "refreshToken");
-  return { success: true, token: "token", refreshToken: "refreshToken" };
+  localStorage.setItem('accessToken', 'token');
+  localStorage.setItem('refreshToken', 'refreshToken');
+  return { success: true, token: 'token', refreshToken: 'refreshToken' };
 }
 
 export const Login = () => {
   const navigate = useNavigate();
 
   const [state, formAction, pending] = useActionState(loginAction, {
-    error: "",
+    error: '',
   });
 
   const { setTokens } = useAuthStore((state) => state);
@@ -44,23 +44,21 @@ export const Login = () => {
   useEffect(() => {
     if (state.success && state.token && state.refreshToken) {
       setTokens(state.token, state.refreshToken);
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     }
   }, [state, navigate, setTokens]);
 
   return (
     <div className="flex justify-center items-center h-screen dark:bg-gray-900 dark:text-white dark:border-gray-700">
-      <form action={formAction} className="flex flex-col gap-3 w-100">
-        <div className="flex justify-between items-center gap-4 mb-2">
+      <div className="flex flex-col gap-3 w-100">
+        <div className="w-full flex justify-between items-center gap-4 mb-2">
           <HowToButton>
             <div>
               <h2 className="text-2xl font-bold mb-4">What's this about ?</h2>
               <p className="text-lg">
-                This is my personal project to learn and teach how to react.
+                This is my personal project to learn and teach how to React.
               </p>
-              <p className="text-lg">
-                Use different techniques and tools to improve your skills.
-              </p>
+              <p className="text-lg">Use different techniques and tools to improve your skills.</p>
               <p className="mt-2">
                 Login: test@htr.com <br /> Password: howtoreact
               </p>
@@ -70,7 +68,7 @@ export const Login = () => {
             <span>How To React</span>
             <img
               src="logo.svg"
-              style={{ maxHeight: "30px" }}
+              style={{ maxHeight: '30px' }}
               className="animate-spin-slow"
               alt=""
             />
@@ -78,27 +76,29 @@ export const Login = () => {
 
           <ThemeToggler />
         </div>
-        <input
-          name="email"
-          type="text"
-          placeholder="test@htr.com"
-          className="border p-2 rounded appearance-none autofill:bg-yellow-200"
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="howtoreact"
-          className="border p-2 rounded"
-        />
-        <button
-          type="submit"
-          disabled={pending}
-          className="bg-blue-500 text-white p-2 rounded cursor-pointer"
-        >
-          {pending ? "Loading..." : "Submit"}
-        </button>
-        {state?.error && <p className="text-red-500">{state.error}</p>}
-      </form>
+        <form action={formAction} className="flex flex-col gap-3">
+          <input
+            name="email"
+            type="text"
+            placeholder="test@htr.com"
+            className="border p-2 rounded appearance-none autofill:bg-yellow-200"
+          />
+          <input
+            name="password"
+            type="password"
+            placeholder="howtoreact"
+            className="border p-2 rounded"
+          />
+          <button
+            type="submit"
+            disabled={pending}
+            className="bg-blue-500 text-white p-2 rounded cursor-pointer"
+          >
+            {pending ? 'Loading...' : 'Submit'}
+          </button>
+          {state?.error && <p className="text-red-500">{state.error}</p>}
+        </form>
+      </div>
     </div>
   );
 };
