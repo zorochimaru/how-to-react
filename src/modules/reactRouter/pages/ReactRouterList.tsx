@@ -10,7 +10,24 @@ export const ReactRouterList = () => {
   }
 
   return (
-    <div className="flex h-full justify-center items-center">
+    <div className="flex flex-col gap-6 h-full justify-center items-center">
+      <div className="flex gap-10">
+        <a
+          href="https://github.com/zorochimaru/how-to-react/blob/main/src/modules/reactRouter/router.ts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Router {'</>'}
+        </a>
+        <a
+          href="https://github.com/zorochimaru/how-to-react/blob/main/src/modules/reactRouter/pages/ReactRouterList.tsx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Component {'</>'}
+        </a>
+      </div>
+      <h1 className="text-2xl">Todo List</h1>
       <ul className="list-none">
         {todos?.map((event) => (
           <Link key={event.id} to={`${event.id}`}>

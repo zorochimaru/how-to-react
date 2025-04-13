@@ -22,7 +22,17 @@ export const TodoList = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex flex-col gap-6 justify-center items-center h-full">
+      <a
+        href="https://github.com/zorochimaru/how-to-react/blob/main/src/modules/tanStackQuery/pages/TodoList.tsx"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Component {'</>'}
+      </a>
+
+      <h1 className="text-2xl">Todo List</h1>
+
       <ul className="list-none">
         {data?.map((event: Todo) => (
           <Link key={event.id} to={`${event.id}`}>
