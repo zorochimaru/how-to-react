@@ -21,4 +21,9 @@ export const dashboardLinks = [
     img: 'redux.svg',
     link: routerLinks.redux,
   },
+  {
+    title: 'Zustand',
+    img: 'zustand.svg',
+    link: routerLinks.zustand,
+  },
 ];

@@ -18,8 +18,16 @@ export const TodoManager = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-800 rounded shadow space-y-4">
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Todo Manager</h1>
-
+      <div className="flex items-end gap-10">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Todo Manager</h1>
+        <a
+          href="https://github.com/zorochimaru/how-to-react/blob/main/src/modules/redux"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Source code {'</>'}
+        </a>
+      </div>
       <div className="flex gap-2">
         <input
           className="flex-1 border rounded px-2 py-1 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100"

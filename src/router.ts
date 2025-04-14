@@ -8,6 +8,7 @@ import {
   reactRouterRouter,
   reduxRouter,
   tanstackRouter,
+  zustandRouter,
 } from './modules';
 
 export const router = createBrowserRouter(
@@ -25,6 +26,7 @@ export const router = createBrowserRouter(
         { path: routerLinks.reactRouter, children: reactRouterRouter },
         { path: routerLinks.reactHookForm, children: reactHookFormRouter },
         { path: routerLinks.redux, children: reduxRouter },
+        { path: routerLinks.zustand, children: zustandRouter },
       ],
     },
   ],
