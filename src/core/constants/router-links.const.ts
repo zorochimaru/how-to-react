@@ -5,6 +5,7 @@ export const routerLinks = {
   dashboard: '/',
   redux: '/redux',
   zustand: '/zustand',
+  three: '/three',
   reactHookForm: '/react-hook-form',
   reactRouter: '/react-router',
   tanStackQuery: '/tanstack-query',

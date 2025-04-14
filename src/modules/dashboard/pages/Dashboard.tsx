@@ -5,7 +5,7 @@ export const DashBoard = () => {
   const navigation = useNavigation();
 
   return (
-    <div className="flex justify-center items-center h-full gap-5">
+    <div className="flex flex-wrap justify-center items-center h-full gap-5">
       {dashboardLinks.map((link) => (
         <Link
           to={link.link}

@@ -26,4 +26,9 @@ export const dashboardLinks = [
     img: 'zustand.svg',
     link: routerLinks.zustand,
   },
+  {
+    title: 'Three.js',
+    img: 'three.svg',
+    link: routerLinks.three,
+  },
 ];
