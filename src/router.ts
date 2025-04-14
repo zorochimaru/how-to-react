@@ -2,7 +2,13 @@ import { createBrowserRouter } from 'react-router';
 
 import { basename, Login, routerLinks } from './core';
 import AuthLayout from './core/layouts/AuthLayout';
-import { DashBoard, reactHookFormRouter, reactRouterRouter, tanstackRouter } from './modules';
+import {
+  DashBoard,
+  reactHookFormRouter,
+  reactRouterRouter,
+  reduxRouter,
+  tanstackRouter,
+} from './modules';
 
 export const router = createBrowserRouter(
   [
@@ -18,6 +24,7 @@ export const router = createBrowserRouter(
         { path: routerLinks.tanStackQuery, children: tanstackRouter },
         { path: routerLinks.reactRouter, children: reactRouterRouter },
         { path: routerLinks.reactHookForm, children: reactHookFormRouter },
+        { path: routerLinks.redux, children: reduxRouter },
       ],
     },
   ],

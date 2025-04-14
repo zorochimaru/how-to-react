@@ -16,4 +16,9 @@ export const dashboardLinks = [
     img: 'react-hook-form.svg',
     link: routerLinks.reactHookForm,
   },
+  {
+    title: 'Redux',
+    img: 'redux.svg',
+    link: routerLinks.redux,
+  },
 ];
