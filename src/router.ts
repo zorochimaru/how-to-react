@@ -1,10 +1,10 @@
-import { createBrowserRouter } from 'react-router';
+import { createHashRouter } from 'react-router';
 
 import { basename, Login, routerLinks } from './core';
 import AuthLayout from './core/layouts/AuthLayout';
 import { DashBoard, reactRouterRouter, tanstackRouter } from './modules';
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   [
     {
       path: routerLinks.login,
