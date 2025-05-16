@@ -4,13 +4,10 @@ import { z } from 'zod';
 import { HowToButton, ThemeToggler } from '../components';
 import { useAuthStore } from '../stores';
 
-const LoginSchema = z
-  .object({
-    email: z.string().email('Invalid email format'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
-  })
-  .required();
-
+const LoginSchema = z.object({
+  email: z.string(),
+  password: z.string(),
+});
 type LoginFormValues = z.infer<typeof LoginSchema>;
 
 async function loginAction(_prevState: { error?: string }, formData: FormData) {
@@ -22,10 +19,6 @@ async function loginAction(_prevState: { error?: string }, formData: FormData) {
   }
 
   await new Promise((res) => setTimeout(res, 1000));
-
-  if (data.email !== 'test@htr.com' || data.password !== 'howtoreact') {
-    return { error: 'Invalid email or password' };
-  }
 
   localStorage.setItem('accessToken', 'token');
   localStorage.setItem('refreshToken', 'refreshToken');
@@ -59,9 +52,6 @@ export const Login = () => {
                 This is my personal project to learn and teach how to React.
               </p>
               <p className="text-lg">Use different techniques and tools to improve your skills.</p>
-              <p className="mt-2">
-                Login: test@htr.com <br /> Password: howtoreact
-              </p>
             </div>
           </HowToButton>
           <h1 className="text-3xl flex items-center justify-center gap-4 text-center flex-1">
@@ -94,7 +84,7 @@ export const Login = () => {
             disabled={pending}
             className="bg-blue-500 text-white p-2 rounded cursor-pointer"
           >
-            {pending ? 'Loading...' : 'Submit'}
+            {pending ? 'Loading...' : 'Login'}
           </button>
           {state?.error && <p className="text-red-500">{state.error}</p>}
         </form>
